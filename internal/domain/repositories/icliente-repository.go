@@ -6,7 +6,8 @@ import (
 )
 
 type IClienteRepository interface {
-	Save(cliente *entities.Cliente) error
+	Criar(cliente *entities.Cliente) error
 	Listar() ([]*entities.Cliente, error)
-	BuscarClientePorId(uuid uuid.UUID) (*entities.Cliente, error)
+	BuscarPorId(uuid uuid.UUID) (*entities.Cliente, error)
+	Atualizar(cliente *entities.Cliente) error
 }

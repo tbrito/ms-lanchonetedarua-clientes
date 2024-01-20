@@ -16,7 +16,7 @@ func NovoBuscarClientePorIdUseCase(repository domain.IClienteRepository) *Buscar
 
 func (c *BuscarClientePorIdUseCase) Execute(id uuid.UUID) (*use_cases.ClienteOutput, error) {
 
-	cliente, err := c.repository.BuscarClientePorId(id)
+	cliente, err := c.repository.BuscarPorId(id)
 
 	if err != nil {
 		return nil, err

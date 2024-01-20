@@ -29,7 +29,7 @@ func (c *CriarClienteUseCase) Execute(criarClienteInput CriarClienteInput) error
 
 	log.Println(cliente)
 
-	err = c.repository.Save(cliente)
+	err = c.repository.Criar(cliente)
 
 	if err != nil {
 		return err

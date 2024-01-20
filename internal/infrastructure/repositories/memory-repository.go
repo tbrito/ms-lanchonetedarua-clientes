@@ -34,7 +34,7 @@ func (r *memoryClienteRepository) BuscarClientePorId(id uuid.UUID) (*entities.Cl
 		}
 	}
 
-	return nil, errors.New("Não encontrado.")
+	return nil, errors.New("Não encontrado")
 }
 
 //escreva uma função para excluir o cliente

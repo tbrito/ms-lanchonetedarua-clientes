@@ -4,9 +4,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/tbrito/ms-lanchonetedarua-clientes/cmd/api/controllers"
+	use_cases_atualizar "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/atualizar-cliente"
 	use_cases_buscar_por_id "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/buscar-cliente-por-id"
 	use_cases_criar "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/criar-cliente"
 	use_cases_listar "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/listar-clientes"
+
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/infrastructure/database"
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/infrastructure/repositories"
 	"net/http"
@@ -39,5 +41,17 @@ func ClienteRoutes(router *gin.Engine) {
 		}
 		useCase := use_cases_buscar_por_id.NovoBuscarClientePorIdUseCase(clienteRepository)
 		controllers.BuscarClientePorId(ctx, useCase, id)
+	})
+
+	clienteRoutes.PUT("/:id", func(ctx *gin.Context) {
+		param := ctx.Param("id")
+		id, err := uuid.Parse(param)
+
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Formato de UUID inválido"})
+			return
+		}
+		useCase := use_cases_atualizar.NovoAtualizarClienteUseCase(clienteRepository)
+		controllers.AtualizarCliente(ctx, useCase, id)
 	})
 }
