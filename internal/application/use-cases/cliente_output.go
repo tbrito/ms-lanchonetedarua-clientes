@@ -1,10 +1,9 @@
 package use_cases
 
 import (
-	"time"
-
 	"github.com/google/uuid"
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/entities"
+	"time"
 )
 
 type ClienteOutput struct {

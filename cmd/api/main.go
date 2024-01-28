@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/cmd/api/controllers"
+)
 
 func main() {
 	r := gin.Default()
@@ -11,7 +14,7 @@ func main() {
 		})
 	})
 
-	ClienteRoutes(r)
+	controllers.ClienteRoutes(r)
 
 	r.Run()
 }

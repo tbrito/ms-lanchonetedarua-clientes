@@ -2,8 +2,8 @@ package use_cases
 
 import (
 	"github.com/google/uuid"
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases"
-	domain "github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
 )
 
 type BuscarClientePorIdUseCase struct {

@@ -2,7 +2,7 @@ package use_cases
 
 import (
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/entities"
-	domain "github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
 	"log"
 )
 

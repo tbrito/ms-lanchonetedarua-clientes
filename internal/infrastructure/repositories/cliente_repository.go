@@ -14,10 +14,14 @@ func NovoClienteRepository(db *gorm.DB) *clienteRepository {
 	return &clienteRepository{db}
 }
 
-func (r *clienteRepository) Criar(cliente *entities.Cliente) error {
+func (r *clienteRepository) Criar(cliente *entities.Cliente) (*uuid.UUID, error) {
 	tx := r.db.Create(cliente)
 
-	return tx.Error
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
+	return &cliente.Id, nil
 }
 
 func (r *clienteRepository) Listar() ([]*entities.Cliente, error) {

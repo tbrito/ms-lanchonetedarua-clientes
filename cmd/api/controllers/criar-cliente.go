@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/criar-cliente"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/criar-cliente"
 	"net/http"
 )
 
@@ -20,7 +20,7 @@ func CriarCliente(ctx *gin.Context, useCase *use_cases.CriarClienteUseCase) {
 		return
 	}
 
-	err := useCase.Execute(body)
+	clienteId, err := useCase.Execute(body)
 
 	if err != nil {
 		ctx.AbortWithStatusJSON(
@@ -36,5 +36,6 @@ func CriarCliente(ctx *gin.Context, useCase *use_cases.CriarClienteUseCase) {
 		http.StatusCreated,
 		gin.H{
 			"sucess": true,
+			"id":     clienteId,
 		})
 }

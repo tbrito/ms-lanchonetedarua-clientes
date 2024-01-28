@@ -1,8 +1,9 @@
 package use_cases
 
 import (
+	"github.com/google/uuid"
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/entities"
-	domain "github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
 	"log"
 )
 
@@ -14,7 +15,7 @@ func NovoCriarClienteUseCase(repository domain.IClienteRepository) *CriarCliente
 	return &CriarClienteUseCase{repository}
 }
 
-func (c *CriarClienteUseCase) Execute(criarClienteInput CriarClienteInput) error {
+func (c *CriarClienteUseCase) Execute(criarClienteInput CriarClienteInput) (*uuid.UUID, error) {
 	cliente, err := entities.NovoCliente(
 		criarClienteInput.Nome,
 		criarClienteInput.DataNascimento,
@@ -24,16 +25,16 @@ func (c *CriarClienteUseCase) Execute(criarClienteInput CriarClienteInput) error
 	)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	log.Println(cliente)
 
-	err = c.repository.Criar(cliente)
+	clienteId, err := c.repository.Criar(cliente)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return clienteId, nil
 }

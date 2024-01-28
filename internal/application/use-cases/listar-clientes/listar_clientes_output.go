@@ -1,7 +1,7 @@
 package use_cases
 
 import (
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases"
 	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/entities"
 )
 

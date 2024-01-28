@@ -1,7 +1,7 @@
 package use_cases
 
 import (
-	domain "github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/domain/repositories"
 )
 
 type ListarClienteUseCase struct {

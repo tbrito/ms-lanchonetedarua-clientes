@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/buscar-cliente-por-id"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/buscar-cliente-por-id"
 	"net/http"
 )
 
@@ -21,7 +21,7 @@ func BuscarClientePorId(ctx *gin.Context, useCase *use_cases.BuscarClientePorIdU
 	}
 
 	ctx.JSON(
-		http.StatusCreated,
+		http.StatusOK,
 		gin.H{
 			"sucess":  true,
 			"cliente": cliente,

@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/atualizar-cliente"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/atualizar-cliente"
 	"net/http"
 )
 
@@ -33,4 +33,10 @@ func AtualizarCliente(ctx *gin.Context, useCase *use_cases.AtualizarClienteUseCa
 			})
 		return
 	}
+
+	ctx.JSON(
+		http.StatusNoContent,
+		gin.H{
+			"sucess": true,
+		})
 }

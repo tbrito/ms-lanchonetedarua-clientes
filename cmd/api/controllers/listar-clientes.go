@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	use_cases "github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/listar-clientes"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/listar-clientes"
 	"net/http"
 )
 
@@ -24,6 +24,6 @@ func ListarClientes(ctx *gin.Context, useCase *use_cases.ListarClienteUseCase) {
 		http.StatusOK,
 		gin.H{
 			"sucess":   true,
-			"clientes": clientes,
+			"clientes": clientes.Clientes,
 		})
 }
