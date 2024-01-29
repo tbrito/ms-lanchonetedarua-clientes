@@ -1,8 +1,8 @@
-name: Build and Test
+name: API Clientes
+
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    branches: [ "main" ]
 
 jobs:
   build:
