@@ -1,0 +1,32 @@
+### Health
+GET http://localhost:8080/healthy
+
+### Criar Cliente
+POST http://localhost:8080/clientes
+Content-Type: application/json
+
+{
+  "nome": "Janduy Monroe",
+  "data_nascimento": "1983-06-07T00:00:00Z",
+  "telefone": "(98) 999999946",
+  "endereco": "Rua Exemplo, 123, Cidade, Estado, 01234-567",
+  "email": "janduymonroe@gmail.com"
+}
+
+### Buscar todos os clientes
+GET http://localhost:8080/clientes
+
+### Buscar cliente por ID
+GET http://localhost:8080/clientes/d9227a4a-7907-4c72-8039-8f509876d876
+
+### Atualizar Cliente
+PUT http://localhost:8080/clientes/d9227a4a-7907-4c72-8039-8f509876d876
+Content-Type: application/json
+
+{
+  "nome": "Pedro F Monroe",
+  "data_nascimento": "2013-05-09T00:00:00Z",
+  "telefone": "(98) 996139046",
+  "endereco": "Rua Exemplo, 123, Cidade, Estado, 01234-567",
+  "email": "pedrofmonroe@gmail.com"
+}
