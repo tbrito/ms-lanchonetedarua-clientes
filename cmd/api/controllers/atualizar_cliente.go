@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/atualizar-cliente"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/atualizar_cliente"
 	"net/http"
 )
 

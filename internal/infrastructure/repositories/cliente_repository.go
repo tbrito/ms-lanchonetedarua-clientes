@@ -45,3 +45,15 @@ func (r *clienteRepository) Atualizar(cliente *entities.Cliente) error {
 
 	return tx.Error
 }
+
+func (r *clienteRepository) Remover(id uuid.UUID) error {
+	var cliente entities.Cliente
+
+	tx := r.db.First(&cliente, id)
+	if tx.Error != nil {
+		return tx.Error
+	}
+
+	tx = r.db.Delete(&cliente)
+	return tx.Error
+}

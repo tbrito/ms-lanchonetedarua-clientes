@@ -10,4 +10,5 @@ type IClienteRepository interface {
 	Listar() ([]*entities.Cliente, error)
 	BuscarPorId(uuid uuid.UUID) (*entities.Cliente, error)
 	Atualizar(cliente *entities.Cliente) error
+	Remover(uuid uuid.UUID) error
 }

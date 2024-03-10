@@ -13,6 +13,7 @@ type ClienteOutput struct {
 	Telefone       string    `json:"telefone"`
 	Endereco       string    `json:"endereco"`
 	Email          string    `json:"email"`
+	Ativo          bool      `json:"ativo"`
 }
 
 func ClienteOutputFromModel(c *entities.Cliente) ClienteOutput {
@@ -23,6 +24,7 @@ func ClienteOutputFromModel(c *entities.Cliente) ClienteOutput {
 		Telefone:       c.Telefone,
 		Endereco:       c.Endereco,
 		Email:          c.Email,
+		Ativo:          c.Ativo,
 	}
 }
 
