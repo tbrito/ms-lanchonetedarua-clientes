@@ -6,7 +6,7 @@ import (
 )
 
 func NewPostgresDB() *gorm.DB {
-	dsn := "host=lanchonetedaruadb.czcuc4gason0.us-east-1.rds.amazonaws.com user=postgres password=QE1muGg0fwsepsH dbname=cliente port=5432 sslmode=disable TimeZone=America/Sao_Paulo"
+	dsn := "host=lanchonetedaruadb.c16om6u44j69.us-east-1.rds.amazonaws.com user=postgres password=QE1muGg0fwsepsH dbname=cliente port=5432 sslmode=disable TimeZone=America/Sao_Paulo"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

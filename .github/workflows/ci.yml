@@ -55,13 +55,13 @@ jobs:
       - name: Push Docker image to ECR
         run: |
           # Login ECR
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 468037464742.dkr.ecr.us-east-1.amazonaws.com
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339713163875.dkr.ecr.us-east-1.amazonaws.com
           
           # Image tag
-          docker tag ms-lanchonetedarua-cliente:latest 468037464742.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
+          docker tag ms-lanchonetedarua-cliente:latest 339713163875.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
           
           # Publish image to ecr
-          docker push 468037464742.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
+          docker push 339713163875.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
         env:
           AWS_DEFAULT_REGION: us-east-1
   
