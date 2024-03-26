@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/criar-cliente"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/criar_cliente"
 	"net/http"
 )
 

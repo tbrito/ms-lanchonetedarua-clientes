@@ -17,10 +17,10 @@ Content-Type: application/json
 GET http://localhost:8080/clientes
 
 ### Buscar cliente por ID
-GET http://localhost:8080/clientes/d9227a4a-7907-4c72-8039-8f509876d876
+GET http://localhost:8080/clientes/13bc00bb-5996-43eb-a12b-c6f13addbb35
 
 ### Atualizar Cliente
-PUT http://localhost:8080/clientes/d9227a4a-7907-4c72-8039-8f509876d876
+PUT http://localhost:8080/clientes/13bc00bb-5996-43eb-a12b-c6f13addbb35
 Content-Type: application/json
 
 {
@@ -30,3 +30,9 @@ Content-Type: application/json
   "endereco": "Rua Exemplo, 123, Cidade, Estado, 01234-567",
   "email": "pedrofmonroe@gmail.com"
 }
+
+### Desativar cliente
+PATCH http://localhost:8080/clientes/13bc00bb-5996-43eb-a12b-c6f13addbb35
+
+### Remover cliente
+DELETE http://localhost:8080/clientes/13bc00bb-5996-43eb-a12b-c6f13addbb35

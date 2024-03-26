@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/buscar-cliente-por-id"
+	"github.com/tbrito/ms-lanchonetedarua-clientes/internal/application/use-cases/buscar_cliente_por_id"
 	"net/http"
 )
 
