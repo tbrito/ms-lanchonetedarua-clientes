@@ -5,63 +5,44 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout Repository
-  #       uses: actions/checkout@v2
-
-  #     - name: Set up Go
-  #       uses: actions/setup-go@v2
-  #       with:
-  #         go-version: 1.21.6
-
-  #     - name: Build
-  #       run: go build
-
-  # sonarcloud:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: SonarCloud Scan
-  #       uses: sonarsource/sonarcloud-github-action@master
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  deploy:
-    # needs: build
+ 
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    # checkout the repo
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+    
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-artifacts
+        path: build/libs
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: us-east-1
-      
-      - name: Build Docker image
-        run: |
-          docker build -t ms-lanchonetedarua-cliente:latest .
-        env:
-          AWS_DEFAULT_REGION: us-east-1
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Push Docker image to ECR
-        run: |
-          # Login ECR
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339713163875.dkr.ecr.us-east-1.amazonaws.com
-          
-          # Image tag
-          docker tag ms-lanchonetedarua-cliente:latest 339713163875.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
-          
-          # Publish image to ecr
-          docker push 339713163875.dkr.ecr.us-east-1.amazonaws.com/lanchonetedarua:ms-lanchonetedarua-cliente-latest
-        env:
-          AWS_DEFAULT_REGION: us-east-1
-  
+    - name: 'Build and push image'
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/ms-lanchonetedarua-cliente:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ms-lanchonetedarua-cliente:${{ github.sha }}
+
+    - name: 'Deploy to Azure Container Instances'
+      uses: 'azure/aci-deploy@v1'
+      with:
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
+        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/ms-lanchonetedarua-cliente:${{ github.sha }}
+        registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+        name: fiapigrupo23
+        location: 'South Central US'
