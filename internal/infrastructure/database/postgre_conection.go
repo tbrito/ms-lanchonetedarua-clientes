@@ -15,7 +15,8 @@ func NewPostgresDB() *gorm.DB {
 	sslMode := "require"
 	timeZone := "America/Sao_Paulo"
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s TimeZone=%s", host, port, user, password, dbname, sslMode, timeZone)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+  db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		panic("Falha ao se conectar ao banco de dados")
